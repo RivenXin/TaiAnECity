@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0103)http://mbs.yyuap.com:8080/ump/web/appdownload/download?type=ios&buildId=61433&fileName=PlaceOrder.plist -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="language" content="zh">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>移动APP下载</title>
+<link rel="shortcut icon" href="http://mbs.yyuap.com:8080/ump/img/favicon.ico">
+<script type="text/javascript" src="./移动APP下载_files/jquery-1.8.3.js.下载"></script>
+<style>
+HTML {
+	OVERFLOW-X: hidden;
+}
+
+#foot {
+	height: 50px;
+	background-color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	z-index: 2000;
+	position: fixed;
+	bottom: 0
+}
+
+.downapp {
+	float: left;
+	width: 100%;
+	height: 66px;
+	padding-top: 16px;
+	text-align: center;
+}
+
+.alertMessageBg {
+	position: fixed;
+	_position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: #000;
+	opacity: 0.8;
+	-moz-opacity: 0.5;
+	filter: alpha(opacity = 50);
+	z-index: 2001;
+	display: none;
+}
+</style>
+
+</head>
+<body style="text-align: center; background-color: #00b9ef; margin: 0">
+	<div>
+		<div style="padding-top: 3%;">
+			<img src="file:///Users/xinyanchao/Desktop/install/icon.png" height="100px" width="100px">
+		</div>
+		<div style="color: #ffffff; text-align: center;">
+			<div>
+				<span style="font-size: 24px;">友物流</span>
+			</div>
+			<div style="padding-top: 12px; padding-bottom: 8px">
+				<span style="font-size: 18px;">打包时间：2019-04-11 19:12:56.0</span>
+			</div>
+			<div id="system">
+				<span style="font-size: 24px;">适用系统：ios</span>
+			</div>
+			<div id="caDownload" style="display: none; margin-top: 20px;">
+				<span>若您未安装ca证书：</span> <br> <span>1、使用Safari打开本页面</span> <br>
+				<span>2、点击下方的ca证书下载</span> <br> <span>3、若是ios10.3用户，还需要在(关于本机-证书信任设置)信任本服务器</span>
+				<br> <img src="./移动APP下载_files/download_photo_zhengshu.png" style="height: 16px; line-height: 36px;"> <span id="caDownloadLink" style="font-size: 16px; color: #002d66">ca证书下载</span>
+			</div>
+		</div>
+
+		<div id="foot">
+			<div style="width: 100%; margin: 0 0 5 0; background-color: #ffffff;">
+				<div id="d_app" class="downapp">
+					<img src="./移动APP下载_files/download_photo_app.png" style="height: 16px; line-height: 36px;"> <span style="font-size: 16px; color: #002d66">APP下载</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div id="showindex" class="alertMessageBg">
+		<div style="float: right; position: relative; left: -15%; top: 60px;">
+			<span style="font-size: 18px; color: #CCEEFF;">请在浏览器中打开链接后下载！</span>
+		</div>
+		<div style="clear: both; float: right; position: relative; left: -6%; top: 0%">
+			<img id="indexpng" style="display: none;">
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		var is_weixin = false;
+		//判断是否通过微信进入
+		// if(navigator.userAgent.indexOf("MQQBrowser")>=0 || (navigator.userAgent.indexOf("MicroMessenger")>=0)){
+		if ((navigator.userAgent.indexOf("MicroMessenger") >= 0)) {
+			is_weixin = true;
+		}
+
+		var caDownload = "";
+		if (caDownload.length > 0) {
+			$("#caDownload").show();
+			$("#caDownloadLink").bind("click", function(event) {
+				if (is_weixin) {
+					$("#showindex").css("display", "block");
+					$("#indexpng").css({
+						"width" : "294px",
+						"height" : "210px"
+					})
+					$("#indexpng").attr("src", "../../img/dl/weixinand.png");
+					$("#indexpng").show();
+				} else {
+					location.href = "";
+					$("#indexpng").hide();
+				}
+			});
+		};
+
+		if (/android/i.test(navigator.userAgent)) {
+			$("#d_app").bind("click", function(event) {
+				if (is_weixin) {
+					$("#showindex").css("display", "block");
+					$("#indexpng").css({
+						"width" : "294px",
+						"height" : "210px"
+					})
+					$("#indexpng").attr("src", "../../img/dl/weixinand.png");
+					$("#indexpng").show();
+				} else {
+					location.href = "itms-services://?action=download-manifest&url=https://mbs.yyuap.com:443/ump/portalservice/download/61433/PlaceOrder.plist";
+					$("#indexpng").hide();
+				}
+			});
+		};
+
+		if (/ipad|iphone|mac/i.test(navigator.userAgent)) {
+			$("#d_app").bind("click", function(event) {
+				if (is_weixin) {
+					$("#showindex").css("display", "block");
+					$("#indexpng").css({
+						"width" : "294px",
+						"height" : "210px"
+					})
+					$("#indexpng").attr("src", "../../img/dl/weixinios.png");
+					$("#indexpng").show();
+				} else {
+					location.href = "itms-services://?action=download-manifest&url=https://mbs.yyuap.com:443/ump/portalservice/download/61433/PlaceOrder.plist";
+					$("#indexpng").hide();
+				}
+			});
+		};
+	</script>
+
+</body></html>
